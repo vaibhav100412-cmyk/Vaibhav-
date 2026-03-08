@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Vaibhav Kumar Mishra | Portfolio</title>
+<style>
+@import url('data:text/css,');
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+:root{
+  --bg:#03030a;
+  --deep:#07071a;
+  --card:#0d0d22;
+  --card2:#11112a;
+  --red:#ff2244;
+  --red2:#ff6677;
+  --gold:#ffcc44;
+  --cyan:#00f0ff;
+  --purple:#9944ff;
+  --white:#f0f0ff;
+  --muted:#7070a0;
+  --border:rgba(255,255,255,0.06);
+}
+body{
+  background:var(--bg);
+  color:var(--white);
+  font-family:'Segoe UI',system-ui,sans-serif;
+  overflow-x:hidden;
+  cursor:none;
+}
+
+/* ─── CUSTOM CURSOR ─── */
+#cur{position:fixed;width:10px;height:10px;background:var(--red);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:screen;transition:transform .1s;}
+#cur2{position:fixed;width:40px;height:40px;border:1.5px solid rgba(0,240,255,0.5);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .15s ease;}
+
+/* ─── NOISE + GRID ─── */
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.012) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,0.012) 1px,transparent 1px);
+  background-size:55px 55px;
+}
+
+/* ─── CANVAS ─── */
+#cv{position:fixed;inset:0;z-index:0;pointer-events:none;}
+
+/* ─── NAV ─── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:500;
+  padding:0 6%;height:70px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(3,3,10,0.7);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+}
+.nlogo{
+  font-size:1.1rem;font-weight:900;letter-spacing:.25em;text-transform:uppercase;
+  background:linear-gradient(135deg,var(--red),var(--gold));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.nlinks{display:flex;gap:28px;}
+.nlinks a{
+  font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;transition:color .25s;
+  position:relative;
+}
+.nlinks a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--red);transition:width .3s;}
+.nlinks a:hover{color:var(--white);}
+.nlinks a:hover::after{width:100%;}
+.nhire{
+  padding:9px 22px;
+  background:linear-gradient(135deg,var(--red),#aa0022);
+  color:#fff;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;
+  text-decoration:none;font-weight:700;
+  box-shadow:0 0 20px rgba(255,34,68,0.4);
+  transition:all .3s;
+  clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);
+}
+.nhire:hover{box-shadow:0 0 35px rgba(255,34,68,0.7);transform:translateY(-2px);}
+
+/* ─── HERO ─── */
+#hero{
+  min-height:100vh;
+  display:flex;align-items:center;
+  padding:100px 6% 60px;
+  position:relative;z-index:1;
+  overflow:hidden;
+}
+.hero-glow{
+  position:absolute;
+  width:700px;height:700px;
+  background:radial-gradient(circle,rgba(255,34,68,0.12) 0%,transparent 65%);
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  pointer-events:none;animation:gPulse 4s ease-in-out infinite;
+}
+.hero-glow2{
+  position:absolute;
+  width:400px;height:400px;
+  background:radial-gradient(circle,rgba(0,240,255,0.07) 0%,transparent 65%);
+  top:20%;right:10%;pointer-events:none;
+  animation:gPulse 5s 1s ease-in-out infinite;
+}
+@keyframes gPulse{0%,100%{transform:translate(-50%,-50%) scale(1);}50%{transform:translate(-50%,-50%) scale(1.15);}}
+
+.hero-left{flex:1;max-width:640px;position:relative;z-index:2;}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:7px 18px;
+  border:1px solid rgba(0,240,255,0.3);
+  background:rgba(0,240,255,0.05);
+  border-radius:100px;
+  font-size:.62rem;letter-spacing:.35em;color:var(--cyan);text-transform:uppercase;
+  margin-bottom:32px;
+  opacity:0;animation:riseUp .6s .1s ease both;
+}
+.tag-dot{width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 8px var(--cyan);animation:blink 1.5s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.2;}}
+
+.hero-name{
+  font-size:clamp(3rem,7vw,6.5rem);
+  font-weight:900;line-height:.9;letter-spacing:-.03em;
+  opacity:0;animation:riseUp .7s .25s ease both;
+  position:relative;
+}
+.hero-name .l1{
+  display:block;
+  background:linear-gradient(135deg,#fff 0%,#ccccee 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero-name .l2{
+  display:block;
+  background:linear-gradient(135deg,var(--red),var(--gold));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  text-shadow:none;
+  filter:drop-shadow(0 0 30px rgba(255,34,68,.5));
+}
+.hero-name .l3{
+  display:block;
+  -webkit-text-stroke:1.5px rgba(255,255,255,0.18);
+  color:transparent;font-size:88%;
+}
+
+.hero-line{
+  width:80px;height:3px;margin:28px 0;
+  background:linear-gradient(90deg,var(--red),var(--gold),var(--cyan));
+  opacity:0;animation:riseUp .6s .42s ease both;
+  position:relative;
+}
+.hero-line::after{
+  content:'';position:absolute;top:-2px;left:0;
+  width:12px;height:7px;
+  background:var(--red);
+  box-shadow:0 0 12px var(--red);
+  animation:lineSlide 2s linear infinite;
+}
+@keyframes lineSlide{0%{left:0;}100%{left:calc(100% - 12px);}}
+
+.hero-roles{
+  display:flex;flex-direction:column;gap:12px;
+  opacity:0;animation:riseUp .6s .55s ease both;
+  margin-bottom:38px;
+}
+.role{
+  display:flex;align-items:center;gap:14px;
+  font-size:.92rem;color:var(--muted);
+}
+.role strong{color:var(--white);font-weight:700;}
+.rdot{
+  width:32px;height:2px;
+  background:linear-gradient(90deg,var(--red),transparent);
+  flex-shrink:0;
+}
+
+.hero-btns{
+  display:flex;gap:14px;flex-wrap:wrap;
+  opacity:0;animation:riseUp .6s .68s ease both;
+}
+.btn3d{
+  position:relative;padding:13px 30px;
+  font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;
+  font-weight:700;text-decoration:none;border:none;cursor:none;
+  transition:all .3s;display:inline-block;font-family:inherit;
+  transform-style:preserve-3d;
+}
+.btn3d-red{
+  background:linear-gradient(135deg,var(--red),#aa0022);
+  color:#fff;
+  box-shadow:0 8px 0 #7a0010,0 0 28px rgba(255,34,68,.4);
+}
+.btn3d-red:hover{transform:translateY(-4px);box-shadow:0 12px 0 #7a0010,0 0 45px rgba(255,34,68,.6);}
+.btn3d-red:active{transform:translateY(2px);box-shadow:0 4px 0 #7a0010;}
+.btn3d-ghost{
+  background:transparent;color:var(--white);
+  border:1.5px solid rgba(255,255,255,0.18);
+  box-shadow:0 6px 0 rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.1);
+}
+.btn3d-ghost:hover{border-color:var(--cyan);color:var(--cyan);transform:translateY(-4px);box-shadow:0 10px 0 rgba(0,0,0,.4),0 0 25px rgba(0,240,255,.2);}
+
+.hero-stats{
+  margin-top:56px;
+  display:flex;gap:0;
+  opacity:0;animation:riseUp .6s .82s ease both;
+}
+.hstat{
+  padding:20px 28px;
+  border:1px solid var(--border);
+  background:rgba(255,255,255,.02);
+  backdrop-filter:blur(4px);
+  position:relative;
+  transition:transform .3s;
+}
+.hstat:hover{transform:translateY(-4px);}
+.hstat::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--c,var(--red));}
+.hstat:nth-child(1){--c:var(--red);}
+.hstat:nth-child(2){--c:var(--gold);}
+.hstat:nth-child(3){--c:var(--cyan);}
+.hstat-n{font-size:2.4rem;font-weight:900;line-height:1;color:var(--c,var(--red));}
+.hstat-l{font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-top:5px;}
+
+.hero-right{
+  flex:0 0 380px;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;z-index:2;
+}
+.hero-3d-card{
+  width:320px;height:380px;
+  position:relative;
+  transform-style:preserve-3d;
+  animation:cardFloat 5s ease-in-out infinite;
+}
+@keyframes cardFloat{0%,100%{transform:rotateY(-8deg) rotateX(5deg) translateY(0);}50%{transform:rotateY(8deg) rotateX(-3deg) translateY(-20px);}}
+.card-face{
+  position:absolute;inset:0;
+  background:linear-gradient(145deg,#0d0d28,#1a0820);
+  border:1px solid rgba(255,34,68,0.3);
+  border-radius:20px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;
+  box-shadow:
+    0 30px 80px rgba(0,0,0,0.8),
+    0 0 0 1px rgba(255,255,255,0.05),
+    inset 0 1px 0 rgba(255,255,255,.08),
+    0 0 60px rgba(255,34,68,0.15);
+  overflow:hidden;padding:36px;
+}
+.card-face::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,34,68,0.07) 0%,transparent 50%,rgba(0,240,255,0.04) 100%);
+  pointer-events:none;
+}
+.card-ring{
+  width:120px;height:120px;border-radius:50%;
+  border:2px solid rgba(255,34,68,0.4);
+  display:flex;align-items:center;justify-content:center;
+  position:relative;
+  box-shadow:0 0 30px rgba(255,34,68,0.3),inset 0 0 20px rgba(255,34,68,0.1);
+}
+.card-ring::before{
+  content:'';position:absolute;inset:-10px;border-radius:50%;
+  border:1px solid rgba(0,240,255,0.2);
+  animation:spin 6s linear infinite;
+}
+.card-ring::after{
+  content:'';position:absolute;inset:-22px;border-radius:50%;
+  border:1px dashed rgba(255,204,68,0.15);
+  animation:spin 10s linear infinite reverse;
+}
+@keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+.card-initials{
+  font-size:2.6rem;font-weight:900;letter-spacing:.05em;
+  background:linear-gradient(135deg,var(--red),var(--gold));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.card-name{font-size:.78rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;text-align:center;line-height:1.5;}
+.card-title{
+  font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;
+  color:var(--muted);text-align:center;line-height:1.8;
+  border-top:1px solid var(--border);padding-top:16px;width:100%;
+}
+.card-glow-orb{
+  position:absolute;width:200px;height:200px;
+  border-radius:50%;background:radial-gradient(circle,rgba(255,34,68,0.12),transparent 70%);
+  bottom:-60px;right:-60px;pointer-events:none;
+}
+.card-dots{
+  position:absolute;top:20px;right:20px;
+  display:flex;gap:6px;
+}
+.card-dots span{width:7px;height:7px;border-radius:50%;opacity:.5;}
+.card-dots span:nth-child(1){background:var(--red);}
+.card-dots span:nth-child(2){background:var(--gold);}
+.card-dots span:nth-child(3){background:var(--cyan);}
+
+/* ─── SECTION SHARED ─── */
+section.sec{padding:100px 6%;position:relative;z-index:1;}
+section.sec-alt{background:linear-gradient(180deg,rgba(7,7,26,.8),rgba(3,3,10,.9));}
+.sec-hd{margin-bottom:64px;}
+.sec-tag{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:.6rem;letter-spacing:.4em;color:var(--red);text-transform:uppercase;
+  margin-bottom:12px;
+}
+.sec-tag::before{content:'';width:22px;height:1px;background:var(--red);}
+.sec-ttl{
+  font-size:clamp(2rem,5vw,3.8rem);font-weight:900;line-height:.95;letter-spacing:-.02em;
+}
+.sec-ttl .outline{-webkit-text-stroke:1.5px rgba(255,255,255,.18);color:transparent;}
+.sec-ttl .gr{
+  background:linear-gradient(135deg,var(--red),var(--gold));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+
+/* ─── SKILLS ─── */
+.skills-wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;}
+.about-p{font-size:.97rem;line-height:1.9;color:rgba(255,255,255,.55);margin-bottom:18px;}
+.about-p strong{color:var(--white);}
+.chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:28px;}
+.chip{
+  padding:7px 16px;
+  border:1px solid var(--border);
+  font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);
+  background:rgba(255,255,255,.02);
+  transition:all .25s;
+  clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);
+}
+.chip:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(0,240,255,.05);}
+
+.sbars{display:flex;flex-direction:column;gap:22px;}
+.sbar-item{}
+.sbar-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px;}
+.sbar-lbl{font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;font-weight:700;}
+.sbar-pct{
+  font-size:.7rem;font-weight:700;
+  background:linear-gradient(135deg,var(--red),var(--gold));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.sbar-track{
+  height:4px;
+  background:rgba(255,255,255,.05);
+  border-radius:4px;overflow:hidden;position:relative;
+}
+.sbar-fill{
+  height:100%;width:0;border-radius:4px;
+  background:linear-gradient(90deg,var(--red),var(--gold));
+  transition:width 1.5s cubic-bezier(.22,1,.36,1) .2s;
+  box-shadow:0 0 10px rgba(255,34,68,.5);
+  position:relative;
+}
+.sbar-fill::after{
+  content:'';position:absolute;right:0;top:-2px;
+  width:8px;height:8px;border-radius:50%;
+  background:var(--gold);box-shadow:0 0 10px var(--gold);
+}
+
+/* ─── WEBSITES / PROJECTS ─── */
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;}
+.pcard{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:18px;overflow:hidden;
+  position:relative;
+  transition:transform .4s cubic-bezier(.22,1,.36,1),box-shadow .4s;
+  cursor:none;
+  transform-style:preserve-3d;
+}
+.pcard:hover{
+  transform:translateY(-12px) rotateX(3deg) rotateY(-2deg);
+  box-shadow:
+    0 30px 80px rgba(0,0,0,.6),
+    0 0 0 1px rgba(255,34,68,.25),
+    0 0 50px rgba(255,34,68,.1);
+}
+.pcard-top{
+  height:160px;display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+}
+.pcard-top::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 30%,var(--card));}
+.pcard-num{
+  font-size:6rem;font-weight:900;
+  color:rgba(255,255,255,.04);letter-spacing:-.05em;line-height:1;
+  position:relative;z-index:1;
+}
+.pcard-accent{
+  position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--c1,var(--red)),var(--c2,var(--gold)));
+  transform:scaleX(0);transform-origin:left;transition:transform .4s;
+}
+.pcard:hover .pcard-accent{transform:scaleX(1);}
+.pcard-body{padding:24px 26px 28px;}
+.pcard-type{font-size:.58rem;letter-spacing:.35em;color:var(--red);text-transform:uppercase;margin-bottom:8px;}
+.pcard-name{font-size:1.3rem;font-weight:800;margin-bottom:6px;line-height:1.2;}
+.pcard-url{
+  font-size:.68rem;letter-spacing:.1em;color:var(--cyan);text-decoration:none;
+  display:inline-flex;align-items:center;gap:5px;margin-bottom:12px;
+  transition:opacity .25s;
+}
+.pcard-url:hover{opacity:.65;}
+.pcard-desc{font-size:.85rem;line-height:1.75;color:rgba(255,255,255,.45);margin-bottom:16px;}
+.ptags{display:flex;flex-wrap:wrap;gap:7px;}
+.ptag{
+  font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;
+  padding:4px 11px;border:1px solid var(--border);color:var(--muted);
+  border-radius:100px;transition:all .25s;
+}
+.ptag:hover{border-color:var(--cyan);color:var(--cyan);}
+
+/* video section card special colors */
+.pcard:nth-child(4){--c1:var(--cyan);--c2:var(--purple);}
+.pcard:nth-child(4) .pcard-type{color:var(--cyan);}
+.pcard:nth-child(5){--c1:var(--gold);--c2:var(--red);}
+.pcard:nth-child(5) .pcard-type{color:var(--gold);}
+
+/* ─── SERVICES ─── */
+.srv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:2px;}
+.scard{
+  background:var(--card);
+  padding:36px 28px;
+  position:relative;overflow:hidden;
+  transition:all .35s;cursor:none;
+  border:1px solid var(--border);
+}
+.scard::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,34,68,0.06),transparent 50%);
+  opacity:0;transition:opacity .35s;
+}
+.scard:hover{background:#14142e;transform:scale(1.02);}
+.scard:hover::before{opacity:1;}
+.scard::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--red),var(--gold));
+  transform:scaleX(0);transform-origin:left;transition:transform .4s;
+}
+.scard:hover::after{transform:scaleX(1);}
+.snum{font-size:5rem;font-weight:900;color:rgba(255,255,255,.03);line-height:1;margin-bottom:14px;letter-spacing:-.05em;}
+.sname{font-size:1rem;font-weight:800;margin-bottom:10px;}
+.sdesc{font-size:.82rem;line-height:1.75;color:rgba(255,255,255,.4);}
+
+/* ─── WEBSITES LIST ─── */
+.wlist{display:flex;flex-direction:column;gap:0;}
+.wrow{
+  display:grid;grid-template-columns:72px 1fr auto;
+  align-items:center;gap:28px;
+  padding:30px 20px;
+  border-bottom:1px solid var(--border);
+  transition:all .3s;position:relative;cursor:none;
+  border-radius:0;
+}
+.wrow:first-child{border-top:1px solid var(--border);}
+.wrow::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:2px;
+  background:linear-gradient(to bottom,var(--red),var(--gold));
+  transform:scaleY(0);transform-origin:top;transition:transform .35s;
+}
+.wrow:hover{background:rgba(255,34,68,.04);padding-left:32px;}
+.wrow:hover::before{transform:scaleY(1);}
+.wi{font-size:2.4rem;font-weight:900;color:rgba(255,255,255,.05);letter-spacing:-.04em;line-height:1;}
+.winfo .wname{font-size:1.2rem;font-weight:800;margin-bottom:5px;}
+.winfo .wdesc{font-size:.82rem;color:rgba(255,255,255,.4);line-height:1.65;}
+.wlink{
+  font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--red);
+  text-decoration:none;white-space:nowrap;
+  border:1px solid rgba(255,34,68,.3);padding:8px 16px;
+  border-radius:100px;transition:all .3s;
+}
+.wlink:hover{background:var(--red);color:#fff;box-shadow:0 0 20px rgba(255,34,68,.4);}
+
+/* ─── CONTACT ─── */
+.ctwrap{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
+.ct-big{
+  font-size:clamp(2.8rem,6vw,5rem);font-weight:900;
+  line-height:.9;letter-spacing:-.03em;margin-bottom:20px;
+}
+.ct-big .gr{
+  background:linear-gradient(135deg,var(--red),var(--gold));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  display:block;filter:drop-shadow(0 0 20px rgba(255,34,68,.4));
+}
+.ct-sub{font-size:.92rem;line-height:1.8;color:rgba(255,255,255,.45);margin-bottom:32px;}
+.ctlinks{display:flex;flex-direction:column;gap:12px;}
+.ctlink{
+  display:flex;align-items:center;gap:16px;text-decoration:none;
+  color:var(--white);padding:16px 20px;
+  background:var(--card);border:1px solid var(--border);
+  border-radius:12px;font-size:.82rem;transition:all .3s;cursor:none;
+  position:relative;overflow:hidden;
+}
+.ctlink::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
+  background:linear-gradient(to bottom,var(--red),var(--gold));
+  transform:scaleY(0);transform-origin:top;transition:transform .3s;
+}
+.ctlink:hover{border-color:rgba(255,34,68,.3);transform:translateX(8px);box-shadow:0 0 30px rgba(255,34,68,.1);}
+.ctlink:hover::before{transform:scaleY(1);}
+.ctico{font-size:1.3rem;flex-shrink:0;}
+.ctlbl{font-size:.55rem;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:2px;}
+.ctval{font-weight:700;}
+
+.form-box{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:36px;}
+.fform{display:flex;flex-direction:column;gap:14px;}
+.fg{display:flex;flex-direction:column;gap:6px;}
+.fl{font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);}
+.fi,.ft{
+  background:rgba(255,255,255,.03);border:1px solid var(--border);
+  color:var(--white);border-radius:8px;padding:13px 16px;
+  font-family:inherit;font-size:.9rem;outline:none;
+  transition:border-color .25s,box-shadow .25s;
+}
+.fi:focus,.ft:focus{border-color:rgba(255,34,68,.5);box-shadow:0 0 20px rgba(255,34,68,.08);}
+.ft{resize:vertical;min-height:120px;}
+.fbtn{
+  padding:15px 32px;
+  background:linear-gradient(135deg,var(--red),#aa0022);
+  color:#fff;border:none;border-radius:8px;
+  font-family:inherit;font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;
+  font-weight:700;cursor:none;
+  box-shadow:0 8px 0 #7a0010,0 0 28px rgba(255,34,68,.4);
+  transition:all .3s;align-self:flex-start;
+}
+.fbtn:hover{transform:translateY(-4px);box-shadow:0 12px 0 #7a0010,0 0 45px rgba(255,34,68,.6);}
+.fbtn:active{transform:translateY(2px);box-shadow:0 4px 0 #7a0010;}
+
+/* ─── FOOTER ─── */
+footer{
+  position:relative;z-index:1;
+  background:var(--deep);
+  border-top:1px solid var(--border);
+  padding:36px 6%;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;
+}
+.flogo{
+  font-size:.9rem;font-weight:900;letter-spacing:.3em;text-transform:uppercase;
+  background:linear-gradient(135deg,var(--red),var(--gold));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.fcopy{font-size:.6rem;letter-spacing:.15em;color:rgba(255,255,255,.25);}
+.flinks{display:flex;gap:22px;}
+.flinks a{font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.3);text-decoration:none;transition:color .25s;}
+.flinks a:hover{color:var(--red);}
+
+/* ─── REVEAL ─── */
+@keyframes riseUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
+.rv{opacity:0;transform:translateY(36px);transition:opacity .75s ease,transform .75s ease;}
+.rv.on{opacity:1;transform:translateY(0);}
+.d1{transition-delay:.1s;} .d2{transition-delay:.2s;} .d3{transition-delay:.32s;} .d4{transition-delay:.44s;}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:960px){
+  #hero{flex-direction:column;gap:40px;}
+  .hero-right{display:none;}
+  .skills-wrap{grid-template-columns:1fr;}
+  .ctwrap{grid-template-columns:1fr;}
+  .nlinks{display:none;}
+}
+@media(max-width:550px){
+  section.sec{padding:70px 5%;}
+  .hero-stats{flex-wrap:wrap;}
+  .wrow{grid-template-columns:1fr;gap:8px;}
+  .wi{display:none;}
+}
+</style>
+</head>
+<body>
+
+<canvas id="cv"></canvas>
+<div id="cur"></div>
+<div id="cur2"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nlogo">VKM</div>
+  <div class="nlinks">
+    <a href="#skills">Skills</a>
+    <a href="#work">Work</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a href="#contact" class="nhire">Hire Me</a>
+</nav>
+
+<!-- ══════════════ HERO ══════════════ -->
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+
+  <div class="hero-left">
+    <div class="hero-tag"><span class="tag-dot"></span>Open to Freelance Projects</div>
+
+    <h1 class="hero-name">
+      <span class="l1">VAIBHAV</span>
+      <span class="l2">KUMAR</span>
+      <span class="l3">MISHRA</span>
+    </h1>
+
+    <div class="hero-line"></div>
+
+    <div class="hero-roles">
+      <div class="role"><span class="rdot"></span><div><strong>Web Developer</strong> &mdash; 7+ Live Websites Built</div></div>
+      <div class="role"><span class="rdot"></span><div><strong>Video Editor</strong> &mdash; 3+ Years · CapCut &amp; VN</div></div>
+      <div class="role"><span class="rdot"></span><div><strong>Business Growth Expert</strong> &mdash; Sales &amp; Digital Strategy</div></div>
+    </div>
+
+    <div class="hero-btns">
+      <a href="#work" class="btn3d btn3d-red">&#9654; View My Work</a>
+      <a href="#contact" class="btn3d btn3d-ghost">Get In Touch &rarr;</a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="hstat"><div class="hstat-n">7+</div><div class="hstat-l">Websites Built</div></div>
+      <div class="hstat"><div class="hstat-n">3+</div><div class="hstat-l">Yrs Editing</div></div>
+      <div class="hstat"><div class="hstat-n">100%</div><div class="hstat-l">Satisfaction</div></div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-3d-card">
+      <div class="card-face">
+        <div class="card-dots"><span></span><span></span><span></span></div>
+        <div class="card-ring">
+          <div class="card-initials">VKM</div>
+        </div>
+        <div class="card-name">VAIBHAV KUMAR<br>MISHRA</div>
+        <div class="card-title">
+          Web Developer<br>
+          Video Editor<br>
+          Business Growth Expert
+        </div>
+        <div class="card-glow-orb"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ SKILLS ══════════════ -->
+<section id="skills" class="sec sec-alt">
+  <div class="sec-hd rv">
+    <div class="sec-tag">Who I Am</div>
+    <h2 class="sec-ttl">About &amp; <span class="gr">Skills</span></h2>
+  </div>
+  <div class="skills-wrap">
+    <div class="rv d1">
+      <p class="about-p">Hi, I&rsquo;m <strong>Vaibhav Kumar Mishra</strong> &mdash; a passionate multi-skilled digital professional from India. I build stunning websites, create cinematic videos, and help businesses grow their sales and online presence.</p>
+      <p class="about-p">I have <strong>built and launched 7+ live websites</strong>, edited hundreds of videos over <strong>3+ years using CapCut and VN Editor</strong>, and guided businesses with proven strategies to <strong>increase their sales and revenue</strong>.</p>
+      <p class="about-p">I don&rsquo;t just deliver work &mdash; I deliver <strong>results that matter</strong>.</p>
+      <p class="about-p">&#128241; Contact: <strong>+91 62020 77767</strong></p>
+      <div class="chips">
+        <span class="chip">HTML &amp; CSS</span>
+        <span class="chip">JavaScript</span>
+        <span class="chip">WordPress</span>
+        <span class="chip">CapCut</span>
+        <span class="chip">VN Editor</span>
+        <span class="chip">Reels</span>
+        <span class="chip">SEO</span>
+        <span class="chip">Sales Strategy</span>
+        <span class="chip">Social Media</span>
+        <span class="chip">Funnels</span>
+      </div>
+    </div>
+    <div class="sbars rv d2">
+      <div class="sbar-item"><div class="sbar-top"><span class="sbar-lbl">Web Development</span><span class="sbar-pct">90%</span></div><div class="sbar-track"><div class="sbar-fill" data-w="90"></div></div></div>
+      <div class="sbar-item"><div class="sbar-top"><span class="sbar-lbl">Website Design (UI)</span><span class="sbar-pct">85%</span></div><div class="sbar-track"><div class="sbar-fill" data-w="85"></div></div></div>
+      <div class="sbar-item"><div class="sbar-top"><span class="sbar-lbl">Video Editing — CapCut</span><span class="sbar-pct">93%</span></div><div class="sbar-track"><div class="sbar-fill" data-w="93"></div></div></div>
+      <div class="sbar-item"><div class="sbar-top"><span class="sbar-lbl">Video Editing — VN</span><span class="sbar-pct">90%</span></div><div class="sbar-track"><div class="sbar-fill" data-w="90"></div></div></div>
+      <div class="sbar-item"><div class="sbar-top"><span class="sbar-lbl">Business Growth Strategy</span><span class="sbar-pct">87%</span></div><div class="sbar-track"><div class="sbar-fill" data-w="87"></div></div></div>
+      <div class="sbar-item"><div class="sbar-top"><span class="sbar-lbl">Sales &amp; Digital Marketing</span><span class="sbar-pct">83%</span></div><div class="sbar-track"><div class="sbar-fill" data-w="83"></div></div></div>
+      <div class="sbar-item"><div class="sbar-top"><span class="sbar-lbl">SEO &amp; Content Strategy</span><span class="sbar-pct">80%</span></div><div class="sbar-track"><div class="sbar-fill" data-w="80"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ WEBSITES ══════════════ -->
+<section id="work" class="sec">
+  <div class="sec-hd rv">
+    <div class="sec-tag">Live Websites</div>
+    <h2 class="sec-ttl">Websites <span class="outline">I Built</span></h2>
+  </div>
+  <div class="proj-grid" style="margin-top:0;">
+    <div class="pcard rv">
+      <div class="pcard-top" style="background:linear-gradient(135deg,#100308,#1e0510,#08040f);padding:0;overflow:hidden;">
+        <svg width="100%" height="100%" viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <!-- Browser chrome -->
+          <rect x="30" y="12" width="260" height="136" rx="8" fill="#0a0210" stroke="rgba(255,34,68,0.4)" stroke-width="1.5"/>
+          <rect x="30" y="12" width="260" height="24" rx="8" fill="rgba(255,34,68,0.12)"/>
+          <rect x="30" y="28" width="260" height="8" fill="rgba(255,34,68,0.12)"/>
+          <!-- Dots -->
+          <circle cx="46" cy="24" r="4" fill="rgba(255,80,80,0.7)"/>
+          <circle cx="58" cy="24" r="4" fill="rgba(255,200,0,0.5)"/>
+          <circle cx="70" cy="24" r="4" fill="rgba(0,200,100,0.5)"/>
+          <!-- URL bar -->
+          <rect x="82" y="18" width="148" height="12" rx="6" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/>
+          <text x="94" y="27" font-size="7" fill="rgba(255,255,255,0.5)">davguru.in</text>
+          <!-- Page content -->
+          <rect x="35" y="40" width="250" height="35" rx="2" fill="url(#dg1)"/>
+          <defs><linearGradient id="dg1" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="rgba(255,34,68,0.25)"/><stop offset="100%" stop-color="rgba(100,0,30,0.1)"/></linearGradient></defs>
+          <!-- Hero text lines -->
+          <rect x="44" y="48" width="90" height="8" rx="2" fill="rgba(255,255,255,0.7)"/>
+          <rect x="44" y="60" width="65" height="5" rx="1" fill="rgba(255,255,255,0.3)"/>
+          <!-- CTA button -->
+          <rect x="44" y="69" width="45" height="14" rx="3" fill="rgba(255,34,68,0.8)"/>
+          <rect x="47" y="74" width="35" height="5" rx="1" fill="rgba(255,255,255,0.7)"/>
+          <!-- Nav items in header -->
+          <rect x="175" y="44" width="25" height="4" rx="1" fill="rgba(255,255,255,0.3)"/>
+          <rect x="205" y="44" width="25" height="4" rx="1" fill="rgba(255,255,255,0.3)"/>
+          <rect x="235" y="44" width="40" height="4" rx="1" fill="rgba(255,255,255,0.3)"/>
+          <!-- Cards row -->
+          <rect x="35" y="82" width="75" height="50" rx="4" fill="rgba(255,255,255,0.04)" stroke="rgba(255,34,68,0.2)" stroke-width="0.5"/>
+          <rect x="35" y="82" width="75" height="16" rx="4" fill="rgba(255,34,68,0.15)"/>
+          <rect x="40" y="103" width="50" height="4" rx="1" fill="rgba(255,255,255,0.35)"/>
+          <rect x="40" y="110" width="38" height="3" rx="1" fill="rgba(255,255,255,0.18)"/>
+          <rect x="118" y="82" width="75" height="50" rx="4" fill="rgba(255,255,255,0.04)" stroke="rgba(255,34,68,0.2)" stroke-width="0.5"/>
+          <rect x="118" y="82" width="75" height="16" rx="4" fill="rgba(255,204,68,0.15)"/>
+          <rect x="123" y="103" width="50" height="4" rx="1" fill="rgba(255,255,255,0.35)"/>
+          <rect x="123" y="110" width="38" height="3" rx="1" fill="rgba(255,255,255,0.18)"/>
+          <rect x="201" y="82" width="75" height="50" rx="4" fill="rgba(255,255,255,0.04)" stroke="rgba(0,240,255,0.2)" stroke-width="0.5"/>
+          <rect x="201" y="82" width="75" height="16" rx="4" fill="rgba(0,240,255,0.1)"/>
+          <rect x="206" y="103" width="50" height="4" rx="1" fill="rgba(255,255,255,0.35)"/>
+          <rect x="206" y="110" width="38" height="3" rx="1" fill="rgba(255,255,255,0.18)"/>
+          <!-- Glow -->
+          <ellipse cx="160" cy="80" rx="120" ry="60" fill="rgba(255,34,68,0.04)"/>
+        </svg>
+      </div>
+      <div class="pcard-accent"></div>
+      <div class="pcard-body">
+        <div class="pcard-type">Live Website &middot; Web Dev</div>
+        <div class="pcard-name">DavGuru</div>
+        <a href="https://davguru.in" target="_blank" class="pcard-url">davguru.in &#8599;</a>
+        <div class="pcard-desc">Professional digital services platform built for strong branding and client conversions.</div>
+        <div class="ptags"><span class="ptag">HTML</span><span class="ptag">CSS</span><span class="ptag">WordPress</span></div>
+      </div>
+    </div>
+
+    <div class="pcard rv d1">
+      <div class="pcard-top" style="background:linear-gradient(135deg,#030e10,#061820,#030810);padding:0;overflow:hidden;">
+        <svg width="100%" height="100%" viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect x="30" y="12" width="260" height="136" rx="8" fill="#030e12" stroke="rgba(0,240,255,0.4)" stroke-width="1.5"/>
+          <rect x="30" y="12" width="260" height="24" rx="8" fill="rgba(0,240,255,0.08)"/>
+          <rect x="30" y="28" width="260" height="8" fill="rgba(0,240,255,0.08)"/>
+          <circle cx="46" cy="24" r="4" fill="rgba(255,80,80,0.6)"/>
+          <circle cx="58" cy="24" r="4" fill="rgba(255,200,0,0.5)"/>
+          <circle cx="70" cy="24" r="4" fill="rgba(0,200,100,0.5)"/>
+          <rect x="82" y="18" width="148" height="12" rx="6" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+          <text x="94" y="27" font-size="7" fill="rgba(255,255,255,0.5)">solutiondav.in</text>
+          <!-- Split layout -->
+          <rect x="35" y="38" width="120" height="106" rx="3" fill="rgba(0,240,255,0.05)"/>
+          <rect x="35" y="38" width="120" height="30" rx="3" fill="rgba(0,240,255,0.1)"/>
+          <rect x="42" y="46" width="80" height="8" rx="2" fill="rgba(255,255,255,0.6)"/>
+          <rect x="42" y="58" width="60" height="4" rx="1" fill="rgba(255,255,255,0.25)"/>
+          <rect x="42" y="76" width="40" height="12" rx="2" fill="rgba(0,240,255,0.4)"/>
+          <rect x="45" y="80" width="30" height="4" rx="1" fill="rgba(255,255,255,0.6)"/>
+          <!-- Service list -->
+          <rect x="42" y="96" width="6" height="6" rx="1" fill="rgba(0,240,255,0.5)"/>
+          <rect x="52" y="98" width="55" height="3" rx="1" fill="rgba(255,255,255,0.3)"/>
+          <rect x="42" y="108" width="6" height="6" rx="1" fill="rgba(0,240,255,0.5)"/>
+          <rect x="52" y="110" width="45" height="3" rx="1" fill="rgba(255,255,255,0.3)"/>
+          <rect x="42" y="120" width="6" height="6" rx="1" fill="rgba(0,240,255,0.5)"/>
+          <rect x="52" y="122" width="50" height="3" rx="1" fill="rgba(255,255,255,0.3)"/>
+          <!-- Right panel -->
+          <rect x="162" y="38" width="118" height="106" rx="3" fill="rgba(255,255,255,0.02)" stroke="rgba(0,240,255,0.1)" stroke-width="0.5"/>
+          <rect x="167" y="44" width="108" height="55" rx="2" fill="rgba(0,240,255,0.06)"/>
+          <!-- Mock chart -->
+          <polyline points="172,92 185,78 198,84 211,68 224,72 237,58 250,62 263,48 275,52" fill="none" stroke="rgba(0,240,255,0.7)" stroke-width="1.5"/>
+          <polyline points="172,92 185,78 198,84 211,68 224,72 237,58 250,62 263,48 275,52 275,99 172,99" fill="rgba(0,240,255,0.06)"/>
+          <rect x="167" y="103" width="50" height="4" rx="1" fill="rgba(255,255,255,0.3)"/>
+          <rect x="167" y="111" width="70" height="3" rx="1" fill="rgba(255,255,255,0.15)"/>
+          <rect x="167" y="118" width="40" height="3" rx="1" fill="rgba(255,255,255,0.15)"/>
+          <rect x="222" y="118" width="30" height="9" rx="2" fill="rgba(0,240,255,0.3)"/>
+          <rect x="225" y="121" width="22" height="3" rx="1" fill="rgba(255,255,255,0.5)"/>
+        </svg>
+      </div>
+      <div class="pcard-accent" style="background:linear-gradient(90deg,var(--cyan),#0080ff);"></div>
+      <div class="pcard-body">
+        <div class="pcard-type" style="color:var(--cyan);">Live Website &middot; Web Dev</div>
+        <div class="pcard-name">SolutionDav</div>
+        <a href="https://solutiondav.in" target="_blank" class="pcard-url">solutiondav.in &#8599;</a>
+        <div class="pcard-desc">Business website for tech and consulting services with a clean, conversion-focused modern design.</div>
+        <div class="ptags"><span class="ptag">HTML</span><span class="ptag">CSS</span><span class="ptag">JS</span></div>
+      </div>
+    </div>
+
+    <div class="pcard rv d2">
+      <div class="pcard-top" style="background:linear-gradient(135deg,#0a0e04,#141e06,#080a04);padding:0;overflow:hidden;">
+        <svg width="100%" height="100%" viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <rect x="30" y="12" width="260" height="136" rx="8" fill="#08100a" stroke="rgba(80,200,80,0.4)" stroke-width="1.5"/>
+          <rect x="30" y="12" width="260" height="24" rx="8" fill="rgba(80,200,80,0.08)"/>
+          <rect x="30" y="28" width="260" height="8" fill="rgba(80,200,80,0.08)"/>
+          <circle cx="46" cy="24" r="4" fill="rgba(255,80,80,0.6)"/>
+          <circle cx="58" cy="24" r="4" fill="rgba(255,200,0,0.5)"/>
+          <circle cx="70" cy="24" r="4" fill="rgba(80,200,80,0.7)"/>
+          <rect x="82" y="18" width="148" height="12" rx="6" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+          <text x="94" y="27" font-size="7" fill="rgba(255,255,255,0.5)">solutiongyan.com</text>
+          <!-- Blog/edu layout -->
+          <rect x="35" y="38" width="260" height="22" rx="2" fill="rgba(80,200,80,0.1)"/>
+          <rect x="42" y="44" width="70" height="6" rx="1" fill="rgba(255,255,255,0.55)"/>
+          <rect x="200" y="43" width="55" height="8" rx="2" fill="rgba(80,200,80,0.3)"/>
+          <rect x="205" y="46" width="42" height="3" rx="1" fill="rgba(255,255,255,0.4)"/>
+          <!-- Article cards -->
+          <rect x="35" y="65" width="78" height="76" rx="4" fill="rgba(80,200,80,0.06)" stroke="rgba(80,200,80,0.2)" stroke-width="0.5"/>
+          <rect x="35" y="65" width="78" height="30" rx="4" fill="rgba(80,200,80,0.12)"/>
+          <circle cx="74" cy="80" r="8" fill="rgba(80,200,80,0.2)"/>
+          <text x="74" y="84" text-anchor="middle" font-size="10" fill="rgba(80,200,80,0.8)">📚</text>
+          <rect x="40" y="100" width="58" height="4" rx="1" fill="rgba(255,255,255,0.4)"/>
+          <rect x="40" y="107" width="45" height="3" rx="1" fill="rgba(255,255,255,0.2)"/>
+          <rect x="40" y="114" width="35" height="3" rx="1" fill="rgba(255,255,255,0.2)"/>
+          <rect x="120" y="65" width="78" height="76" rx="4" fill="rgba(80,200,80,0.06)" stroke="rgba(80,200,80,0.2)" stroke-width="0.5"/>
+          <rect x="120" y="65" width="78" height="30" rx="4" fill="rgba(255,204,68,0.12)"/>
+          <circle cx="159" cy="80" r="8" fill="rgba(255,204,68,0.2)"/>
+          <text x="159" y="84" text-anchor="middle" font-size="10" fill="rgba(255,204,68,0.8)">💡</text>
+          <rect x="125" y="100" width="58" height="4" rx="1" fill="rgba(255,255,255,0.4)"/>
+          <rect x="125" y="107" width="45" height="3" rx="1" fill="rgba(255,255,255,0.2)"/>
+          <rect x="125" y="114" width="35" height="3" rx="1" fill="rgba(255,255,255,0.2)"/>
+          <rect x="205" y="65" width="78" height="76" rx="4" fill="rgba(80,200,80,0.06)" stroke="rgba(0,240,255,0.2)" stroke-width="0.5"/>
+          <rect x="205" y="65" width="78" height="30" rx="4" fill="rgba(0,240,255,0.1)"/>
+          <circle cx="244" cy="80" r="8" fill="rgba(0,240,255,0.2)"/>
+          <text x="244" y="84" text-anchor="middle" font-size="10" fill="rgba(0,240,255,0.8)">🎯</text>
+          <rect x="210" y="100" width="58" height="4" rx="1" fill="rgba(255,255,255,0.4)"/>
+          <rect x="210" y="107" width="45" height="3" rx="1" fill="rgba(255,255,255,0.2)"/>
+          <rect x="210" y="114" width="35" height="3" rx="1" fill="rgba(255,255,255,0.2)"/>
+        </svg>
+      </div>
+      <div class="pcard-accent" style="background:linear-gradient(90deg,#50c850,#80ff80);"></div>
+      <div class="pcard-body">
+        <div class="pcard-type" style="color:#50c850;">Live Website &middot; Education</div>
+        <div class="pcard-name">SolutionGyan</div>
+        <a href="https://solutiongyan.com" target="_blank" class="pcard-url">solutiongyan.com &#8599;</a>
+        <div class="pcard-desc">Educational platform providing knowledge-based digital content and resources for learners online.</div>
+        <div class="ptags"><span class="ptag">HTML</span><span class="ptag">CSS</span><span class="ptag">SEO</span></div>
+      </div>
+    </div>
+
+    <div class="pcard rv d3" style="border-style:dashed;display:flex;flex-direction:column;justify-content:center;align-items:center;min-height:320px;text-align:center;padding:36px;">
+      <div style="font-size:3rem;margin-bottom:14px;opacity:.3;">+</div>
+      <div style="font-size:1.2rem;font-weight:800;margin-bottom:8px;">4+ More Websites</div>
+      <div style="color:var(--muted);font-size:.84rem;margin-bottom:22px;line-height:1.7;">Landing pages, business sites &amp; custom builds across different industries</div>
+      <a href="#contact" class="btn3d btn3d-red" style="font-size:.6rem;">Request Details</a>
+    </div>
+  </div>
+
+  <!-- VIDEO -->
+  <div style="margin-top:80px;">
+    <div class="sec-hd rv" style="margin-bottom:40px;">
+      <div class="sec-tag">Video Editing Work</div>
+      <h2 class="sec-ttl" style="font-size:clamp(1.8rem,4vw,3rem);">Video <span class="gr">Portfolio</span></h2>
+    </div>
+    <div class="proj-grid">
+      <div class="pcard rv">
+        <!-- REEL CARD -->
+        <div class="pcard-top" style="background:linear-gradient(135deg,#0d0520,#1a0830,#0a0a20);padding:0;overflow:hidden;">
+          <svg width="100%" height="100%" viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <!-- Phone frame -->
+            <rect x="110" y="8" width="60" height="144" rx="10" fill="#1a1030" stroke="rgba(153,68,255,0.5)" stroke-width="1.5"/>
+            <rect x="113" y="18" width="54" height="98" rx="4" fill="#0a0820"/>
+            <!-- Screen content -->
+            <rect x="113" y="18" width="54" height="98" rx="4" fill="url(#rg1)"/>
+            <defs>
+              <linearGradient id="rg1" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#2a0a40"/>
+                <stop offset="100%" stop-color="#0a1530"/>
+              </linearGradient>
+            </defs>
+            <!-- Play icon -->
+            <circle cx="140" cy="67" r="14" fill="rgba(255,34,68,0.2)" stroke="rgba(255,34,68,0.7)" stroke-width="1.5"/>
+            <polygon points="136,61 136,73 150,67" fill="#ff2244"/>
+            <!-- Waveform -->
+            <g opacity="0.6">
+              <rect x="116" y="120" width="3" height="8" rx="1.5" fill="#ff2244"/>
+              <rect x="121" y="116" width="3" height="16" rx="1.5" fill="#ff6677"/>
+              <rect x="126" y="112" width="3" height="24" rx="1.5" fill="#ff2244"/>
+              <rect x="131" y="118" width="3" height="12" rx="1.5" fill="#ff6677"/>
+              <rect x="136" y="114" width="3" height="20" rx="1.5" fill="#ff2244"/>
+              <rect x="141" y="110" width="3" height="28" rx="1.5" fill="#ff6677"/>
+              <rect x="146" y="116" width="3" height="16" rx="1.5" fill="#ff2244"/>
+              <rect x="151" y="120" width="3" height="8" rx="1.5" fill="#ff6677"/>
+              <rect x="156" y="113" width="3" height="22" rx="1.5" fill="#ff2244"/>
+              <rect x="161" y="119" width="3" height="10" rx="1.5" fill="#ff6677"/>
+            </g>
+            <!-- Caption bar -->
+            <rect x="113" y="100" width="54" height="16" rx="0" fill="rgba(0,0,0,0.7)"/>
+            <rect x="117" y="105" width="30" height="4" rx="2" fill="rgba(255,255,255,0.6)"/>
+            <!-- Side icons -->
+            <circle cx="180" cy="50" r="6" fill="rgba(255,34,68,0.3)" stroke="rgba(255,34,68,0.6)" stroke-width="1"/>
+            <text x="180" y="54" text-anchor="middle" font-size="7" fill="#ff2244">♥</text>
+            <circle cx="180" cy="70" r="6" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+            <text x="180" y="74" text-anchor="middle" font-size="7" fill="white">✱</text>
+            <!-- CapCut badge -->
+            <rect x="10" y="60" width="70" height="22" rx="4" fill="rgba(0,0,0,0.6)" stroke="rgba(153,68,255,0.4)" stroke-width="1"/>
+            <text x="20" y="75" font-size="9" fill="#9944ff" font-weight="bold">CapCut</text>
+            <text x="49" y="75" font-size="9" fill="rgba(255,255,255,0.5)">+ VN</text>
+            <!-- Stars -->
+            <text x="14" y="50" font-size="8" fill="rgba(255,204,68,0.5)">★ ★ ★ ★ ★</text>
+            <!-- glow -->
+            <ellipse cx="140" cy="80" rx="50" ry="50" fill="radial-gradient(circle,rgba(153,68,255,0.15),transparent)" opacity="0.3"/>
+          </svg>
+        </div>
+        <div class="pcard-accent"></div>
+        <div class="pcard-body">
+          <div class="pcard-type">Short-Form Content &middot; 3+ Yrs</div>
+          <div class="pcard-name">Reels &amp; Short Videos</div>
+          <div class="pcard-desc">Fast-paced Instagram &amp; YouTube Shorts with smooth cuts, trending transitions, music sync and captions that boost views and engagement.</div>
+          <div class="ptags"><span class="ptag">CapCut</span><span class="ptag">VN</span><span class="ptag">Reels</span></div>
+        </div>
+      </div>
+
+      <!-- PROMO VIDEO CARD -->
+      <div class="pcard rv d1">
+        <div class="pcard-top" style="background:linear-gradient(135deg,#051520,#081030,#0a1020);padding:0;overflow:hidden;">
+          <svg width="100%" height="100%" viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <!-- Monitor -->
+            <rect x="60" y="15" width="200" height="110" rx="8" fill="#0a1020" stroke="rgba(0,240,255,0.4)" stroke-width="1.5"/>
+            <rect x="65" y="20" width="190" height="95" rx="4" fill="#04080f"/>
+            <!-- Video timeline -->
+            <rect x="65" y="20" width="190" height="95" rx="4" fill="url(#vg1)"/>
+            <defs>
+              <linearGradient id="vg1" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#051525"/>
+                <stop offset="100%" stop-color="#0a0820"/>
+              </linearGradient>
+            </defs>
+            <!-- Play area -->
+            <circle cx="160" cy="55" r="18" fill="rgba(0,240,255,0.1)" stroke="rgba(0,240,255,0.6)" stroke-width="1.5"/>
+            <polygon points="154,46 154,64 172,55" fill="#00f0ff"/>
+            <!-- Progress bar -->
+            <rect x="70" y="100" width="180" height="3" rx="1.5" fill="rgba(255,255,255,0.08)"/>
+            <rect x="70" y="100" width="110" height="3" rx="1.5" fill="url(#pg1)"/>
+            <defs>
+              <linearGradient id="pg1" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#00f0ff"/>
+                <stop offset="100%" stop-color="#0080ff"/>
+              </linearGradient>
+            </defs>
+            <circle cx="180" cy="101.5" r="5" fill="#00f0ff" filter="url(#glow)"/>
+            <!-- Timeline clips -->
+            <rect x="70" y="107" width="35" height="7" rx="2" fill="rgba(0,240,255,0.3)" stroke="rgba(0,240,255,0.5)" stroke-width="0.5"/>
+            <rect x="108" y="107" width="45" height="7" rx="2" fill="rgba(255,34,68,0.3)" stroke="rgba(255,34,68,0.5)" stroke-width="0.5"/>
+            <rect x="156" y="107" width="28" height="7" rx="2" fill="rgba(255,204,68,0.3)" stroke="rgba(255,204,68,0.5)" stroke-width="0.5"/>
+            <rect x="187" y="107" width="55" height="7" rx="2" fill="rgba(0,240,255,0.2)" stroke="rgba(0,240,255,0.4)" stroke-width="0.5"/>
+            <!-- Text overlay -->
+            <rect x="70" y="28" width="80" height="12" rx="2" fill="rgba(255,34,68,0.2)" stroke="rgba(255,34,68,0.4)" stroke-width="0.5"/>
+            <rect x="73" y="31" width="50" height="5" rx="1" fill="rgba(255,255,255,0.4)"/>
+            <!-- Brand badge -->
+            <rect x="225" y="28" width="26" height="12" rx="2" fill="rgba(255,34,68,0.3)"/>
+            <rect x="228" y="31" width="20" height="6" rx="1" fill="rgba(255,255,255,0.5)"/>
+            <!-- Monitor stand -->
+            <rect x="148" y="125" width="24" height="8" rx="2" fill="#0a1020" stroke="rgba(0,240,255,0.2)" stroke-width="1"/>
+            <rect x="135" y="133" width="50" height="4" rx="2" fill="#0a1020" stroke="rgba(0,240,255,0.2)" stroke-width="1"/>
+            <!-- VN badge -->
+            <rect x="10" y="65" width="40" height="18" rx="4" fill="rgba(0,0,0,0.7)" stroke="rgba(0,240,255,0.4)" stroke-width="1"/>
+            <text x="20" y="77" font-size="9" fill="#00f0ff" font-weight="bold">VN</text>
+            <text x="28" y="77" font-size="7" fill="rgba(255,255,255,0.4)">Ed.</text>
+          </svg>
+        </div>
+        <div class="pcard-accent"></div>
+        <div class="pcard-body">
+          <div class="pcard-type">Promotional Videos</div>
+          <div class="pcard-name">Business Promo &amp; Ads</div>
+          <div class="pcard-desc">Promo videos for businesses showcasing services and products. Colour grading, text animations, brand-matching visuals to attract customers.</div>
+          <div class="ptags"><span class="ptag">CapCut</span><span class="ptag">VN</span><span class="ptag">Ads</span></div>
+        </div>
+      </div>
+
+      <!-- YOUTUBE CARD -->
+      <div class="pcard rv d2">
+        <div class="pcard-top" style="background:linear-gradient(135deg,#1a1205,#2a1a08,#150d05);padding:0;overflow:hidden;">
+          <svg width="100%" height="100%" viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <!-- YT screen -->
+            <rect x="50" y="15" width="220" height="125" rx="8" fill="#0a0800" stroke="rgba(255,34,68,0.5)" stroke-width="1.5"/>
+            <!-- Header bar -->
+            <rect x="50" y="15" width="220" height="20" rx="8" fill="rgba(255,34,68,0.15)"/>
+            <rect x="50" y="27" width="220" height="8" fill="rgba(255,34,68,0.15)"/>
+            <!-- YT logo area -->
+            <rect x="58" y="19" width="28" height="12" rx="3" fill="#ff0000"/>
+            <polygon points="68,22 68,28 76,25" fill="white"/>
+            <text x="90" y="28" font-size="7" fill="rgba(255,255,255,0.6)" font-weight="bold">YouTube</text>
+            <!-- Thumbnail -->
+            <rect x="55" y="38" width="130" height="73" rx="4" fill="url(#ytg)"/>
+            <defs>
+              <linearGradient id="ytg" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#1a0a00"/>
+                <stop offset="100%" stop-color="#2a1500"/>
+              </linearGradient>
+            </defs>
+            <!-- Thumb play -->
+            <circle cx="120" cy="74" r="16" fill="rgba(255,0,0,0.25)" stroke="rgba(255,0,0,0.7)" stroke-width="1.5"/>
+            <polygon points="114,66 114,82 130,74" fill="#ff0000"/>
+            <!-- Duration badge -->
+            <rect x="163" y="98" width="18" height="10" rx="2" fill="rgba(0,0,0,0.85)"/>
+            <text x="165" y="106" font-size="6" fill="white">8:42</text>
+            <!-- Side thumbnails -->
+            <rect x="192" y="38" width="72" height="40" rx="3" fill="rgba(255,80,0,0.12)" stroke="rgba(255,80,0,0.3)" stroke-width="0.5"/>
+            <polygon points="222,52 222,64 234,58" fill="rgba(255,80,0,0.7)"/>
+            <rect x="192" y="82" width="72" height="40" rx="3" fill="rgba(255,34,68,0.12)" stroke="rgba(255,34,68,0.3)" stroke-width="0.5"/>
+            <polygon points="222,96 222,108 234,102" fill="rgba(255,34,68,0.7)"/>
+            <!-- Info below thumb -->
+            <rect x="55" y="115" width="80" height="5" rx="2" fill="rgba(255,255,255,0.5)"/>
+            <rect x="55" y="124" width="55" height="4" rx="2" fill="rgba(255,255,255,0.2)"/>
+            <!-- Progress -->
+            <rect x="55" y="107" width="130" height="3" rx="1.5" fill="rgba(255,255,255,0.06)"/>
+            <rect x="55" y="107" width="78" height="3" rx="1.5" fill="#ff0000"/>
+            <!-- Subscribers badge -->
+            <rect x="58" y="133" width="60" height="7" rx="3" fill="rgba(255,0,0,0.2)" stroke="rgba(255,0,0,0.4)" stroke-width="0.5"/>
+            <text x="62" y="139" font-size="6" fill="rgba(255,100,100,0.9)">▲ Views Growing</text>
+          </svg>
+        </div>
+        <div class="pcard-accent"></div>
+        <div class="pcard-body">
+          <div class="pcard-type">Long-Form Content</div>
+          <div class="pcard-name">YouTube Videos</div>
+          <div class="pcard-desc">YouTube editing with clean cuts, intro/outro, engaging pacing that keeps viewers watching &mdash; helping channels grow audience and watch time.</div>
+          <div class="ptags"><span class="ptag">YouTube</span><span class="ptag">VN</span><span class="ptag">CapCut</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ SERVICES ══════════════ -->
+<section id="services" class="sec sec-alt">
+  <div class="sec-hd rv">
+    <div class="sec-tag">What I Offer</div>
+    <h2 class="sec-ttl">My <span class="outline">Services</span></h2>
+  </div>
+  <div class="srv-grid">
+    <div class="scard rv"><div class="snum">01</div><div class="sname">Website Design &amp; Development</div><div class="sdesc">Complete websites from scratch &mdash; fast, mobile-friendly, modern design, built to convert visitors into paying customers.</div></div>
+    <div class="scard rv d1"><div class="snum">02</div><div class="sname">Video Editing &amp; Reels</div><div class="sdesc">Professional editing for Reels, YouTube, ads &mdash; transitions, captions, colour grading, music sync. Fast delivery.</div></div>
+    <div class="scard rv d2"><div class="snum">03</div><div class="sname">Business Growth Strategy</div><div class="sdesc">Proven strategies to grow your business online &mdash; social media planning, SEO, sales funnels, content strategy.</div></div>
+    <div class="scard rv d3"><div class="snum">04</div><div class="sname">Sales Increase Consulting</div><div class="sdesc">1-on-1 consulting to fix what is blocking your sales and directly increase your revenue and customer base.</div></div>
+    <div class="scard rv"><div class="snum">05</div><div class="sname">High-Converting Landing Pages</div><div class="sdesc">Single-page websites designed to capture leads, promote an offer, or sell a product. Optimised for results.</div></div>
+    <div class="scard rv d1"><div class="snum">06</div><div class="sname">Social Media Content</div><div class="sdesc">Engaging videos and creatives for Instagram, Facebook &amp; YouTube that build your brand and grow your audience.</div></div>
+  </div>
+</section>
+
+<!-- ══════════════ CONTACT ══════════════ -->
+<section id="contact" class="sec">
+  <div class="sec-hd rv">
+    <div class="sec-tag">Let&rsquo;s Work Together</div>
+    <h2 class="sec-ttl">Get In <span class="gr">Touch</span></h2>
+  </div>
+  <div class="ctwrap">
+    <div class="rv">
+      <div class="ct-big">LET&rsquo;S<br><span class="gr">BUILD</span><br>TOGETHER</div>
+      <p class="ct-sub">Have a project? Need a website, video edited, or a strategy to grow your business? I am ready to help you win.</p>
+      <div class="ctlinks">
+        <a href="https://wa.me/916202077767" target="_blank" class="ctlink"><span class="ctico">&#128241;</span><div><span class="ctlbl">WhatsApp / Call</span><span class="ctval">+91 62020 77767</span></div></a>
+        <a href="https://davguru.in" target="_blank" class="ctlink"><span class="ctico">&#127760;</span><div><span class="ctlbl">Website</span><span class="ctval">davguru.in</span></div></a>
+        <a href="https://solutiondav.in" target="_blank" class="ctlink"><span class="ctico">&#128279;</span><div><span class="ctlbl">Website</span><span class="ctval">solutiondav.in</span></div></a>
+        <a href="https://solutiongyan.com" target="_blank" class="ctlink"><span class="ctico">&#128279;</span><div><span class="ctlbl">Website</span><span class="ctval">solutiongyan.com</span></div></a>
+      </div>
+    </div>
+    <div class="rv d2">
+      <div class="form-box">
+        <div class="fform">
+          <div class="fg"><label class="fl">Your Name</label><input class="fi" type="text" placeholder="e.g. Rahul Sharma"/></div>
+          <div class="fg"><label class="fl">WhatsApp / Email</label><input class="fi" type="text" placeholder="+91 XXXXX XXXXX or your@email.com"/></div>
+          <div class="fg"><label class="fl">Service Needed</label><input class="fi" type="text" placeholder="Website / Video Editing / Business Growth"/></div>
+          <div class="fg"><label class="fl">Your Message</label><textarea class="ft" placeholder="Tell me about your project and goals..."></textarea></div>
+          <button class="fbtn" onclick="alert('Thank you! Vaibhav will contact you on WhatsApp soon.')">Send Message &rarr;</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="flogo">Vaibhav Kumar Mishra</div>
+  <div class="flinks">
+    <a href="#skills">Skills</a>
+    <a href="#work">Work</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="fcopy">&copy; 2024 &mdash; Web Dev &middot; Video Editing &middot; Business Growth</div>
+</footer>
+
+<script>
+(function(){
+/* ── CURSOR ── */
+var cur=document.getElementById('cur'),cur2=document.getElementById('cur2');
+var mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+(function loop(){rx+=(mx-rx)*.13;ry+=(my-ry)*.13;cur2.style.left=rx+'px';cur2.style.top=ry+'px';requestAnimationFrame(loop);})();
+document.querySelectorAll('a,button,.pcard,.scard,.wrow,.hstat').forEach(function(el){
+  el.addEventListener('mouseenter',function(){cur.style.transform='translate(-50%,-50%) scale(2.5)';cur2.style.width='60px';cur2.style.height='60px';cur2.style.borderColor='rgba(255,34,68,.6)';});
+  el.addEventListener('mouseleave',function(){cur.style.transform='translate(-50%,-50%) scale(1)';cur2.style.width='40px';cur2.style.height='40px';cur2.style.borderColor='rgba(0,240,255,.5)';});
+});
+
+/* ── PARTICLES ── */
+var cv=document.getElementById('cv'),cx=cv.getContext('2d'),W,H;
+function rsz(){W=cv.width=innerWidth;H=cv.height=innerHeight;}
+rsz();window.addEventListener('resize',rsz);
+var pts=[];
+for(var i=0;i<130;i++){
+  pts.push({x:Math.random()*3000,y:Math.random()*1200,vx:(Math.random()-.5)*.35,vy:-(Math.random()*.55+.08),a:Math.random()*.45+.04,r:Math.random()*2.2+.4,c:Math.random()>.5?'255,34,68':Math.random()>.5?'0,240,255':Math.random()>.5?'255,204,68':'153,68,255'});
+}
+var mpts=[];
+document.addEventListener('mousemove',function(e){
+  if(Math.random()>.75){mpts.push({x:e.clientX,y:e.clientY,vx:(Math.random()-.5)*1.5,vy:Math.random()*-2-.5,a:.7,r:Math.random()*2.5+1,c:'255,34,68'});}
+  if(mpts.length>50)mpts.shift();
+});
+function tick(){
+  cx.clearRect(0,0,W,H);
+  for(var i=0;i<pts.length;i++){
+    var p=pts[i];p.x+=p.vx;p.y+=p.vy;p.a-=.0005;
+    if(p.a<0||p.y<-5){p.x=Math.random()*W;p.y=H+5;p.a=Math.random()*.45+.04;}
+    cx.save();cx.globalAlpha=p.a;cx.shadowBlur=10;cx.shadowColor='rgb('+p.c+')';cx.fillStyle='rgb('+p.c+')';cx.beginPath();cx.arc(p.x,p.y,p.r,0,Math.PI*2);cx.fill();cx.restore();
+  }
+  for(var j=mpts.length-1;j>=0;j--){
+    var q=mpts[j];q.x+=q.vx;q.y+=q.vy;q.a-=.025;
+    if(q.a<=0){mpts.splice(j,1);continue;}
+    cx.save();cx.globalAlpha=q.a;cx.shadowBlur=14;cx.shadowColor='rgb('+q.c+')';cx.fillStyle='rgb('+q.c+')';cx.beginPath();cx.arc(q.x,q.y,q.r,0,Math.PI*2);cx.fill();cx.restore();
+  }
+  requestAnimationFrame(tick);
+}
+tick();
+
+/* ── SCROLL REVEAL ── */
+var io=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){
+      e.target.classList.add('on');
+      e.target.querySelectorAll('.sbar-fill').forEach(function(b){setTimeout(function(){b.style.width=b.dataset.w+'%';},200);});
+    }
+  });
+},{threshold:.1});
+document.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
+
+/* ── 3D CARD MOUSE PARALLAX ── */
+var card=document.querySelector('.hero-3d-card');
+if(card){
+  document.addEventListener('mousemove',function(e){
+    var rx2=((e.clientY/innerHeight)-.5)*18;
+    var ry2=((e.clientX/innerWidth)-.5)*-18;
+    card.style.transform='rotateX('+rx2+'deg) rotateY('+ry2+'deg) translateY(-10px)';
+  });
+}
+
+/* ── ACTIVE NAV ── */
+var secs=document.querySelectorAll('section[id]');
+window.addEventListener('scroll',function(){
+  var sy=window.scrollY+90;
+  secs.forEach(function(s){
+    var a=document.querySelector('.nlinks a[href="#'+s.id+'"]');
+    if(a){a.style.color=sy>=s.offsetTop&&sy<s.offsetTop+s.offsetHeight?'var(--red)':'';}
+  });
+});
+})();
+</script>
+</body>
+</html>
